@@ -3,7 +3,7 @@
 // @namespace      js
 // @description    Optimize Rutracker and Pornolab
 // @author         nazda
-// @version        2015.02.08.7
+// @version        2015.02.08.9
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
 // @homepage       https://github.com/nazda/js
@@ -20,11 +20,19 @@ else if(window.location.href.match(/\/forum\/viewtopic*/i))
 	viewtopic();
 function tracker() {
 
-	alert("tracker");
+//	alert("tracker");
 }
 function viewforum() {
 
-	alert("viewforum");
+//	alert("viewforum");
+      var e = document.getElementById("moderators");
+      if (e) {
+	  var hash = e.innerText;
+	  alert(hash);
+	 if (/^[0-9A-F]{40}$/.test(hash)) {
+		e.innerHTML = "<a href='magnet:?xt=urn:btih:" + hash + "'>" + hash + "</a>";
+	  }
+     }
 }
 function viewtopic() {
 	//tor-hash
