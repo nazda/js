@@ -7,7 +7,8 @@
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
 // @homepage      https://github.com/nazda/js
-// @include        http://pornolab.net/*
+// @match       http://pornolab.net/*
+// @match       http://rutracker.org/*
 // @icon           http://static.pornolab.net/favicon.ico
 // ==/UserScript==
 
