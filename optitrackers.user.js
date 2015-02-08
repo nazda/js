@@ -1,15 +1,15 @@
 // ==UserScript==
-// @name           AntiThumbs
+// @name           optitrackers
 // @namespace      js
-// @description    Replaces fastpic and imagebam screenshot previews with full size images on PornoLab
+// @description    Optimize Rutracker and Pornolab
 // @author         nazda
 // @version        2015.02.08.7
-// @updateURL      https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
-// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
+// @updateURL      https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
+// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
 // @homepage       https://github.com/nazda/js
 // @match          http://pornolab.net/*
 // @match          http://rutracker.org/*
-// @icon           http://static.pornolab.net/favicon.ico
+// @icon           http://i.imgur.com/vCfrH6c.png
 // ==/UserScript==
 
 if(window.location.href.match(/\/forum\/tracker*/i))
