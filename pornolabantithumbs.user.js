@@ -3,7 +3,7 @@
 // @namespace      js
 // @description    Replaces fastpic and imagebam screenshot previews with full size images on PornoLab
 // @author         nazda
-// @version        2015.02.08.3
+// @version        2015.02.08.5
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
 // @homepage       https://github.com/nazda/js
@@ -12,6 +12,24 @@
 // @icon           http://static.pornolab.net/favicon.ico
 // ==/UserScript==
 
+if(window.location.href.match(/\/forum\/tracker*/i))
+	tracker();
+else if(window.location.href.match(/\/forum\/viewforum*/i))
+	viewforum();
+else if(window.location.href.match(/\/forum\/viewtopic*/i))
+	viewtopic();
+function tracker() {
+
+	alert("tracker");
+}
+function viewforum() {
+
+	alert("viewforum");
+}
+function viewtopic() {
+
+	alert("viewtopic");
+}
 //tor-hash
 var e = document.getElementById("tor-hash");
 if (e) {
