@@ -4,7 +4,7 @@
 // @author         shock_one
 // @license        MIT
 // @version        0.5
-// @updateURL      http://userscripts.org/scripts/source/155601.user.js
+// @updateURL      https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
 // @include        http://pornolab.net/*
 // @icon           http://static.pornolab.net/favicon.ico
 // ==/UserScript==
