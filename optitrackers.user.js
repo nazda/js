@@ -3,7 +3,7 @@
 // @namespace      js
 // @description    Optimize Rutracker and Pornolab
 // @author         nazda
-// @version        2015.02.08.9
+// @version        2015.02.08.10
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
 // @homepage       https://github.com/nazda/js
@@ -25,7 +25,7 @@ function tracker() {
 function viewforum() {
 
 //	alert("viewforum");
-      var e = document.getElementById("moderators");
+      var e = document.getElementById("search-f-form");
       if (e) {
 	  var hash = e.innerText;
 	  alert(hash);
