@@ -12,6 +12,15 @@
 // @icon           http://static.pornolab.net/favicon.ico
 // ==/UserScript==
 
+//tor-hash
+var e = document.getElementById("tor-hash");
+if (e) {
+	var hash = e.innerText;
+	if (/^[0-9A-F]{40}$/.test(hash)) {
+		e.innerHTML = "<a href='magnet:?xt=urn:btih:" + hash + "'>" + hash + "</a>";
+	}
+}
+
 //load jQuery (if you know the way to getJSON with callback and without jQuery, please, contact me).
 function addJQuery(callback) {
   var script = document.createElement("script");
