@@ -3,7 +3,7 @@
 // @namespace      js
 // @description    Replaces fastpic and imagebam screenshot previews with full size images on PornoLab
 // @author         nazda
-// @version        2015.02.08.5
+// @version        2015.02.08.7
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
 // @homepage       https://github.com/nazda/js
@@ -27,16 +27,14 @@ function viewforum() {
 	alert("viewforum");
 }
 function viewtopic() {
-
-	alert("viewtopic");
-}
-//tor-hash
-var e = document.getElementById("tor-hash");
-if (e) {
-	var hash = e.innerText;
-	if (/^[0-9A-F]{40}$/.test(hash)) {
+	//tor-hash
+      var e = document.getElementById("tor-hash");
+      if (e) {
+	  var hash = e.innerText;
+	 if (/^[0-9A-F]{40}$/.test(hash)) {
 		e.innerHTML = "<a href='magnet:?xt=urn:btih:" + hash + "'>" + hash + "</a>";
-	}
+	  }
+     }
 }
 
 //load jQuery (if you know the way to getJSON with callback and without jQuery, please, contact me).
