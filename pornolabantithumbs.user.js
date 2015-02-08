@@ -1,10 +1,12 @@
 // ==UserScript==
-// @name           AntiThumbs
+// @name           AntiThumbs PornoLab
 // @description    Replaces fastpic and imagebam screenshot previews with full size images on PornoLab
 // @author         shock_one
 // @license        MIT
-// @version        0.5
+// @version        2015.02.08.1
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
+// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/pornolabantithumbs.user.js
+// @homepage      https://github.com/nazda/js
 // @include        http://pornolab.net/*
 // @icon           http://static.pornolab.net/favicon.ico
 // ==/UserScript==
