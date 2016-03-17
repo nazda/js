@@ -231,7 +231,13 @@ function displayPoster(id, v, poster) {
 function displayImages(id, v, images) {
     var span = document.createElement("span");
     span.setAttribute("id", "image_" + id);
-    for (var i = 0; i < images.length; i++) {
+    var imgs = images.length;
+    if (imgs > 5){
+    imgs = 5;
+  	
+    }
+    }
+    for (var i = 0; i < imgs; i++) {
         // thumbnail
         var img = new Image();
         img.setAttribute("id", "image_" + id + "_thumbnail" + i);
