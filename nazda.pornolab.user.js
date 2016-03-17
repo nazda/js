@@ -1,7 +1,9 @@
 // ==UserScript==
-// @name           nazda pornolab
-// @description    Optimize Rutracker
-// @author         nazda
+// @name         nazda pornolab
+// @namespace    htftp://tampermonkey.net/rutracker.xray
+// @version      0.1
+// @description  Optimize Rutracker
+// @author       nazda
 // @version        2016.03.17.1
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab.user.js
@@ -9,17 +11,8 @@
 // @match          http://pornolab.net/*
 // @match          http://rutracker.org/*
 // @icon           http://i.imgur.com/vCfrH6c.png
-// @grant        GM_setValue
-// @grant        GM_getValue
-// @grant        GM_registerMenuCommand
-// @grant        GM_listValues
-// @grant        GM_deleteValue
-// @grant        GM_log
-// @grant        GM_xmlhttpRequest
 // ==/UserScript==
 
-
-(function() {
     if (window.location.href.match(/\/forum\/tracker*/i))
         tracker();
     else if (window.location.href.match(/\/forum\/viewforum*/i))
@@ -64,4 +57,3 @@
         }
 
     }
-})();
