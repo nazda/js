@@ -3,8 +3,8 @@
 // @version 0.1
 // @description Pornolab.AutoClick
 // @include http://http://pornolab.net*
-// @downloadURL https://raw.githubusercontent.com/nazda/userscript/Pornolab.AutoClick.user.js
-// @updateURL https://raw.githubusercontent.com/nazda/userscript/Pornolab.AutoClick.user.js
+// @downloadURL https://raw.githubusercontent.com/nazda/js/master/Pornolab_AutoClick.user.js
+// @updateURL https://raw.githubusercontent.com/nazda/userscript/Pornolab_AutoClick.user.js
 // @grant GM_openInTab
 // @run-at document-end
 // ==/UserScript==
