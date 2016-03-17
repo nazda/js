@@ -4,7 +4,7 @@
 // @description Pornolab.AutoClick
 // @include http://http://pornolab.net*
 // @downloadURL https://raw.githubusercontent.com/nazda/js/master/Pornolab_AutoClick.user.js
-// @updateURL https://raw.githubusercontent.com/nazda/userscript/Pornolab_AutoClick.user.js
+// @updateURL https://raw.githubusercontent.com/nazda/js/master/Pornolab_AutoClick.user.js
 // @grant GM_openInTab
 // @run-at document-end
 // ==/UserScript==
@@ -12,18 +12,18 @@
 var autoClose = false,delay = 500,standby = false;
 var prefs = {
 'rutracker': {
-startReg: /^http:\/\/pornolab\.org\/net\/viewtopic\.php\?t=.*/i,//定义href正则
+startReg: /^http:\/\/pornolab\.org\/net\/viewtopic\.php\?t=.*/i,
 elements: function(){ return document.querySelectorAll('div[class="sp-head folded"]');} ,
 delay: 500
 },
 'kafan': {
 startReg: /http:\/\/bbs\.kafan\.cn\/(thread-\d+-\d+-\d+\.html|forum.php\?mod=viewthread.*)/,
 elements: ['a.btn_s_close']
-},//kafan关闭侧栏
+},
 'kafan1': {
 startReg: /http:\/\/bbs\.kafan\.cn\/$/,
 elements: ['a#pper_a']
-}//kafan每日签到
+}
 }
 
 function autoClick1by1(){
