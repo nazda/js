@@ -1,11 +1,10 @@
 // ==UserScript==
-// @name           optitrackers
-// @namespace      js
-// @description    Optimize Rutracker and Pornolab
+// @name           nazda pornolab
+// @description    Optimize Rutracker
 // @author         nazda
 // @version        2016.03.17.1
-// @updateURL      https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
-// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
+// @updateURL      https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab.user.js
+// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab.user.js
 // @homepage       https://github.com/nazda/js
 // @match          http://pornolab.net/*
 // @match          http://rutracker.org/*
