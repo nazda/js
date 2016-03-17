@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Rutracker XRAY
 // @namespace    http://tampermonkey.net/rutracker.xray
-// @version      0.1
+// @version      0.2
 // @description  Display thumbnails in forums and in search results on rutracker and other sites.
 // @author       bergmich
 // @include      http://pornolab.net/forum/viewforum.php*
