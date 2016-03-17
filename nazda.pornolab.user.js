@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         nazda pornolab
-// @namespace    htftp://tampermonkey.net/rutracker.xray
+// @namespace    https://github.com/nazda/js/blob/master/nazda.pornolab.user.js
 // @version      0.1
 // @description  Optimize Rutracker
 // @author       nazda
