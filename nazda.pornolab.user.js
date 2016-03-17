@@ -9,6 +9,8 @@
 // @match          http://pornolab.net/*
 // @match          http://rutracker.org/*
 // @icon           http://i.imgur.com/vCfrH6c.png
+// ==/UserScript==
+
 
 (function() {
     if (window.location.href.match(/\/forum\/tracker*/i))
