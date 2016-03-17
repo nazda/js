@@ -16,7 +16,7 @@ if(window.location.href.match(/\/forum\/tracker*/i))
 else if(window.location.href.match(/\/forum\/viewforum*/i))
 	viewforum();
 else if(window.location.href.match(/\/forum\/viewtopic*/i))
-	viewtopic()
+	viewtopic();
 else if(window.location.href.match(/\/forum\/search*/i))
 	search();
 function search() {
