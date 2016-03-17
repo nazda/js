@@ -1,7 +1,7 @@
-// @name 网页自动化系列点击
-// @namespace autoClick1by1.jasonshaw
-// @version 0.5
-// @description 匹配的任意url，顺序逐个点击设定的obj，任意不存在则彻底停止
+// @name Pornolab.AutoClick
+// @namespace Pornolab.AutoClick
+// @version 0.1
+// @description Pornolab.AutoClick
 // @include http://http://pornolab.net*
 // @downloadURL https://raw.githubusercontent.com/nazda/userscript/master/Pornolab.AutoClick.user.js
 // @updateURL https://raw.githubusercontent.com/nazda/userscript/master/Pornolab.AutoClick.user.js
