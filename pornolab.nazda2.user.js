@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Pornolab Nazda2
-// @namespace    pornolab.nazda2.user.js
+// @namespace    https://github.com/nazda/js/blob/master/pornolab.nazda2.user.js
 // @description  Display thumbnails in forums and in search results on rutracker and other sites.
 // @author       nazda
 // @namespace    https://github.com/nazda/js/blob/master/pornolab.nazda2.user.js
