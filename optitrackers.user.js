@@ -3,7 +3,7 @@
 // @namespace      js
 // @description    Optimize Rutracker and Pornolab
 // @author         nazda
-// @version        2015.02.08.13
+// @version        2016.03.17.1
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/optitrackers.user.js
 // @homepage       https://github.com/nazda/js
@@ -11,6 +11,17 @@
 // @match          http://rutracker.org/*
 // @icon           http://i.imgur.com/vCfrH6c.png
 // ==/UserScript==
+var e = document.getElementById("tor-hash");
+if (e) {
+    var hash = e.innerText;
+    if (/^[0-9A-F]{40}$/.test(hash)) {
+       e.innerHTML = "<a href='magnet:?xt=urn:btih:" + hash + "&tr=http%3A%2F%2Fbt2.rutracker.cc%2Fann%3Fmagnet&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969'>" + hash + "</a>";
+    }
+}
+
+var vr = document.getElementsByClassName("post_btn_2")[0];
+vr.src = i.src.replace('./profile.php?mode=viewprofile&amp;u=', '');
+alert(vr);
 
 if(window.location.href.match(/\/forum\/tracker*/i))
 	tracker();
