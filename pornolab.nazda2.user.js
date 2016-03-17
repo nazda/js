@@ -3,11 +3,12 @@
 // @namespace    https://github.com/nazda/js/blob/master/pornolab.nazda2.user.js
 // @description  Display thumbnails in forums and in search results on rutracker and other sites.
 // @author       nazda
-// @namespace    https://github.com/nazda/js/blob/master/pornolab.nazda2.user.js
 // @description  Add Pornolab (http://tampermonkey.net/rutracker.xray)
 // @version      2016.03.18.2
 // @include      http://pornolab.net/forum/viewforum.php*
 // @include      http://pornolab.net/forum/tracker.php*
+// @updateURL      https://raw.githubusercontent.com/nazda/js/master/pornolab.nazda2.user.js
+// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/pornolab.nazda2.user.js
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_registerMenuCommand
