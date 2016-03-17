@@ -1,15 +1,13 @@
 // ==UserScript==
 // @name         nazda pornolab
 // @namespace    https://github.com/nazda/js/blob/master/nazda.pornolab.user.js
-// @version      0.1
 // @description  Optimize Rutracker
 // @author       nazda
-// @version        2016.03.17.1
+// @version        2016.03.17.2
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab.user.js
 // @homepage       https://github.com/nazda/js
 // @match          http://pornolab.net/*
-// @match          http://rutracker.org/*
 // @icon           http://i.imgur.com/vCfrH6c.png
 // ==/UserScript==
 
