@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Rutracker XRAY
-// @namespace    http://tampermonkey.net/rutracker.xray
-// @version      0.1
+// @name         Rutracker XRAY Def
+// @namespace    https://raw.githubusercontent.com/nazda/js/master/Rutracker_XRAY.def.user.js
+// @version      0.9
 // @description  Display thumbnails in forums and in search results on rutracker and other sites.
 // @author       bergmich
 // @include      http://rutracker.org/forum/viewforum.php*
@@ -10,8 +10,8 @@
 // @include      http://tr.free-torrents.org/forum/tracker.php*
 // @include      http://pornolab.net/forum/viewforum.php*
 // @include      http://pornolab.net/forum/tracker.php*
-// @updateURL      https://raw.githubusercontent.com/nazda/js/master/Rutracker_XRAY.user.def.js
-// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/Rutracker_XRAY.user.def.js
+// @updateURL      https://raw.githubusercontent.com/nazda/js/master/Rutracker_XRAY.def.user.js
+// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/Rutracker_XRAY.def.user.js
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_registerMenuCommand
