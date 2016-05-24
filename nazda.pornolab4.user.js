@@ -3,7 +3,7 @@
 // @namespace    https://github.com/nazda/js/blob/master/nazda.pornolab4.user.js
 // @description  Thumbnail pornolab 4
 // @author       nazda
-// @version        2016.05.24.8
+// @version        2016.05.24.9
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab4.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab4.user.js
 // @homepage       https://github.com/nazda/js
