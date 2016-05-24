@@ -1,244 +1,211 @@
-// ==UserScript==
-// @name         nazda pornolab extender
-// @namespace    https://github.com/nazda/js/blob/master/nazda.pornolab3.user.js
-// @description  Thumbnail Rutracker extender
-// @author       nazda
-// @version        2016.05.24.8
-// @updateURL      https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab3.user.js
-// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab3.user.js
-// @homepage       https://github.com/nazda/js
-// @include     http://pornolab.net/forum/tracker.php*
-// @include     http://pornolab.net/forum/viewforum.php*
-// @icon           http://i.imgur.com/vCfrH6c.png
-// ==/UserScript==
-(function() {
-	var rt = {
-		torrents_base_url: '/forum/',
-		speed: 400,
-		forum_width: 200,
-		tracker_width: 200,
-		// tracker
-		line_selector: '#tor-tbl > tbody > tr',
-		title_column_index: 2,
-		title_selector: 'td:eq(5) a',
-		// forum
-		forumstart: '#main_content_wrap table.forumline.forum',
-		forumline_selector: '#main_content_wrap table.forumline.forum > tbody > tr',
-		forum_column_index: 0,
-		forum_selector: 'td:eq(2) a.tt-text',
-		// ajax selectors
-		torrent_main_selector: '#topic_main .row1 .message .post_body',
-		torrent_poster: '.postImg:first',
-		torrent_fold: '> .sp-wrap'
-	}
-	var postImg_MaxWidth = 500;
-	var postImgAligned_MaxWidth = rt.tracker_width;
+var http = new XMLHttpRequest();
+var tempdoc = new DOMParser();
+var origtitle = document.title;
+var msgidx = -1;
+var msgs = Array();
+var cellidx = 1;
+var topics = Array();
+var hasscipts = 0;
+var allrows = document.getElementsByTagName('tr');
+for (var i = 0; i < allrows.length; i++) {
+	// if (allrows[i].className.indexOf('hl-tr') >= 0)
+	topics.push(allrows[i]);
+};
+if (0 === topics.length)
+	for (var i = 0; i < allrows.length; i++) {
+		if (allrows[i].id.indexOf('tr-') == 0) topics.push(allrows[i]);
+	};
+// 
+if ('viewforum.php' === location.pathname.split('/')[2]) {
+	cellidx = 1;
+	document.title = '[' + topics.length + '] ' + origtitle;
+} else
+if ('tracker.php' === location.pathname.split('/')[2]) {
+	cellidx = 3;
+	document.title = '[' + topics.length + '] ' + origtitle;
+} else
+if ('search.php' === location.pathname.split('/')[2]) {
+	cellidx = 2;
+	document.title = '[' + topics.length + '] ' + origtitle;
+} else
+if ('search_cse.php' === location.pathname.split('/')[2]) {
+	cellidx = 0;
+	document.title = '[' + topics.length + '] ' + origtitle;
+} else return null;
 
-	function tracker() {
-		if (null == document.getElementById('tor-tbl')) return;
-		console.log('Tracker extender started');
-		$('#tor-tbl th:eq(' + rt.title_column_index + ')').after('<th class="{sorter: false} header">Постер</th>');
-		$(rt.line_selector).each(function() {
-			$(this).find('td:eq(' + rt.title_column_index + ')').after('<td class="row4 posterz"></td>');
-		});
-		$('#tor-tbl td').css('vertical-align', 'top');
-		$('#tor-tbl > thead > tr > th:eq(6)').detach().insertBefore('#tor-tbl > thead > tr > th:eq(4)');
-		$('#tor-tbl > tbody tr').each(function() {
-			$(this).find('td:eq(6)').detach().insertBefore($('td:eq(4)', $(this)))
-		});
-		var elements = $(rt.line_selector);
-		var index = 0;
-		var interval = setInterval(function() {
-			//setTimeout(function() {
-			//console.log(index);
-			if (index > elements.length) {
-				clearInterval(interval); /*$('#tor-tbl').trigger("sorton");*/
-			}
-			var $line = $(elements).get(index);
-			var url = $(rt.title_selector, $line).attr('href').replace(/^http:\/\/(.+)\/viewtopic/ig, "viewtopic");
-			//console.log(url);
-			$.get(rt.torrents_base_url + url, function(res) {
-				var page = $(rt.torrent_main_selector, $(res));
-				var poster = page.find(rt.torrent_poster);
-				var screens = page.find(rt.torrent_fold);
-				//console.log(screens);
-				//console.log(screens.length);
-				if (screens.length == 1 && screens.find('var.postImg').length < 7) var move = true;
-				else var move = false;
-				var posterline = $($line).find('td:eq(' + (rt.title_column_index + 1) + ')');
-				posterline.html(poster);
-				initPostImagez(posterline, false);
-				$($line).find(rt.title_selector).after(initSpoilerz(screens, move));
-				//$('#tor-tbl').trigger("update");
-			})
-			index++;
-		}, rt.speed);
-		setclear(interval);
+function pause(ms) {
+	return;
+	var date = new Date();
+	var curDate = null;
+	do {
+		curDate = new Date();
 	}
-	var postImg_MaxWidth = 500;
-	var postImgAligned_MaxWidth = rt.forum_width;
+	while (curDate - date < ms);
+}
 
-	function forum() {
-		if (null == document.getElementById('main_content_wrap')) return;
-		console.log('Tracker extender started');
-		$(rt.forumstart).each(function() {
-			$(this).find('th:eq(' + rt.forum_column_index + ')').before('<th>Постер</th>');
-		});
-		$(rt.forumline_selector).each(function() {
-			$(this).find('td:eq(' + rt.forum_column_index + ')').before('<td></td>');
-		});
-		$(rt.forumstart + ' > colgroup col:first').after('<col class="row1">');
-		$(rt.forumstart + ' td').css('vertical-align', 'top');
-		var elements = $(rt.forumline_selector);
-		var index = 0;
-		var interval = setInterval(function() {
-			//setTimeout(function() {
-			//console.log(index);
-			if (index > elements.length) clearInterval(interval);
-			var $line = $(elements).get(index);
-			//console.log($line);
-			if ($($line).attr('id')) {
-				var url = $(rt.forum_selector, $line).attr('href').replace(/^http:\/\/(.+)\/viewtopic/ig, "viewtopic");
-				//console.log(url);
-				$.get(rt.torrents_base_url + url, function(res) {
-					var page = $(rt.torrent_main_selector, $(res));
-					var poster = page.find(rt.torrent_poster);
-					if (poster.length > 0) {
-						var screens = page.find(rt.torrent_fold);
-						//console.log(screens);
-						//console.log(screens.length);
-						if (screens.length == 1 && screens.find('var.postImg').length < 7) var move = true;
-						else var move = false;
-						var posterline = $($line).find('td:eq(' + (rt.forum_column_index) + ')');
-						posterline.html(poster);
-						initPostImagez(posterline, false);
-						$($line).find(rt.forum_selector).parent().parent().append(initSpoilerz(screens, move));
-					}
-				})
-			}
-			index++;
-		}, rt.speed);
-		setclear(interval);
-	}
+function getcontent(url) {
+	try {
+		http.open('GET', url + '&tmp=' + Math.random(), false);
+		http.send(null);
+	} catch (e) {
+		return null;
+	};
+	if (http.status == 200) return tempdoc.parseFromString(http.responseText, 'text/html');
+	return null;
+}
 
-	function setclear(interval) {
-		$(document).keyup(function(e) {
-			if (e.keyCode == 27) {
-				clearInterval(interval);
-				//if($('#tor-tbl').length>0) $('#tor-tbl').trigger("sorton");
+function makeImages(dom) {
+	var spans = dom.getElementsByTagName('var');
+	var mwidth = window.innerWidth * 0.8;
+	for (var i = spans.length - 1; i >= 0; i--)
+		if (spans[i].className.indexOf('postImg') >= 0) {
+			var aimg = document.createElement('img');
+			var src = spans[i].getAttribute('title');
+			var img = new Image();
+			img.src = src;
+			var divider = 1;
+			if (img.width > mwidth) {
+				divider = (img.width / mwidth);
+				aimg.setAttribute('width', Math.round(img.width / divider));
+				aimg.setAttribute('height', Math.round(img.height / divider));
 			}
-		});
-	}
-	// --------- functions ---------- //
-	function initSpoilerz(context, move) {
-		$('div.sp-body', context).each(function() {
-			var $sp_body = $(this);
-			var name = $.trim(this.title) || '^';
-			this.title = '';
-			if (move) initPostImagez($sp_body, true);
-			else {
-				var $sp_head = $('<div class="sp-head folded clickable">' + name + '</div>');
-				$sp_head.insertBefore($sp_body).click(function(e) {
-					if (!$sp_body.hasClass('inited')) {
-						initPostImagez($sp_body, false);
-						var $sp_fold_btn = $('<div class="sp-fold clickable">[^]</div>').click(function() {
-							$.scrollTo($sp_head, {
-								duration: 200,
-								axis: 'y',
-								offset: -200
-							});
-							$sp_head.click().animate({
-								opacity: 0.1
-							}, 500).animate({
-								opacity: 1
-							}, 700);
-						});
-						$sp_body.prepend('<div class="clear"></div>').append('<div class="clear"></div>').append($sp_fold_btn).addClass('inited');
-					}
-					if (e.shiftKey) {
-						e.stopPropagation();
-						e.shiftKey = false;
-						var fold = $(this).hasClass('unfolded');
-						$('div.sp-head', $($sp_body.parents('td')[0])).filter(function() {
-							return $(this).hasClass('unfolded') ? fold : !fold
-						}).click();
-					} else {
-						$(this).toggleClass('unfolded');
-						$sp_body.slideToggle('fast');
-					}
-				});
-			}
-		});
-		return context;
-	}
-
-	function initPostImagez(context, move) {
-		var $in_spoilers = $('div.sp-body var.postImg', context);
-		$('var.postImg', context).not($in_spoilers).each(function() {
-			var $v = $(this);
-			if (move) {
-				if ($v.parent().attr('href')) var el = $v.parent();
-				else var el = $v;
-				el.detach().appendTo(context.parent());
-			}
-			var src = $v.attr('title');
-			var $img = $('<img src="' + src + '" class="' + $v.attr('className') + '" alt="pic" style="display:none" />');
-			var maxW = ($v.hasClass('postImgAligned')) ? postImgAligned_MaxWidth : postImg_MaxWidth;
-			$img.bind('click', function() {
-				return imgFit(this, maxW, $img.closest('td.row4'));
-			});
-			$('#preload').append($img);
-			var loading_icon = '<a href="' + src + '" target="_blank"><img src="http://static.pornolab.net/templates/default/images/loading_3.gif" alt="" /></a>';
-			$v.html(loading_icon);
-			if ($.browser.msie) {
-				$v.after('<wbr>');
-			}
-			$img.one('load', function() {
-				imgFit(this, maxW, false);
-				$v.empty().append(this);
-			})
-		});
-		if (move) context.find('h3, br').remove();
-	}
-
-	function imgFit(img, maxW, move) {
-		img.style.display = 'inline';
-		if (typeof(img.naturalHeight) == 'undefined') {
-			img.naturalHeight = img.height;
-			img.naturalWidth = img.width;
+			aimg.setAttribute('src', src);
+			aimg.className = spans[i].className;
+			spans[i].parentNode.insertBefore(aimg, spans[i]);
+			spans[i].parentNode.removeChild(spans[i]);
 		}
-		if (img.width > maxW) {
-			img.height = Math.round((maxW / img.width) * img.height);
-			img.width = maxW;
-			img.title = 'Click image to view full size';
-			img.style.cursor = 'move';
-			if (move) {
-				var movetop = move.offset().top - 50;
-				setTimeout(function() {
-					$('html,body').animate({
-						scrollTop: movetop
-					}, 300)
-				});
+	var spans = dom.getElementsByTagName('div');
+	for (var i = spans.length - 1; i >= 0; i--)
+		if (spans[i].className.indexOf('sp-') >= 0) {
+			var imgs = spans[i].getElementsByTagName('img');
+			if ((imgs.length > 0) && (imgs.length < 25)) {
+				spans[i].style.display = 'block';
 			}
-			return false;
-		} else if (img.width == maxW && img.width < img.naturalWidth) {
-			img.height = img.naturalHeight;
-			img.width = img.naturalWidth;
-			img.title = 'Click to fit in the browser window';
-			var movetop = move.offset().top - 50;
-			if (move) {
-				var movetop = move.offset().top - 50;
-				setTimeout(function() {
-					$('html,body').animate({
-						scrollTop: movetop
-					}, 300)
-				});
-			}
-			return false;
-		} else {
-			return true;
 		}
+	var spans = dom.getElementsByTagName('a');
+	for (var i = 0; i < spans.length; i++) spans[i].setAttribute('target', '_blank');
+}
+
+function GetFirstPost(url) {
+	var dom = getcontent(url);
+	if (null == dom) return null;
+	if (hasscipts) {
+		hasscipts = 1;
+		var scripts = dom.getElementsByTagName('script');
+		for (var i = 0; i < scripts.length; i++) document.documentElement.appendChild(scripts[i]);
+		alert('scripts copied');
 	}
-	if (window.location.href.match(/\/forum\/tracker*/i)) tracker();
-	else if (window.location.href.match(/\/forum\/viewforum*/i)) forum();
-})();
+	var atable = dom.getElementById('topic_main');
+	if (null == atable) return -1;
+	var amessages = atable.getElementsByTagName('td');
+	for (var i = 0; i < amessages.length; i++)
+		if (amessages[i].className == 'message td2') {
+			makeImages(amessages[i]);
+			return amessages[i];
+		}
+	return -1;
+}
+var topicsprocessed = 0;
+
+function findtable(element) {
+	while (1) {
+		if (element == null) return null;
+		if (element == document.body) return null;
+		if (element.nodeName.toLowerCase() == 'table') return element;
+		element = element.parentNode;
+	}
+}
+
+function strip_tags(str)
+// Strip HTML and PHP tags from a string
+// 
+// +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+{
+	return str.replace(/<\/?[^>]+>/gi, '');
+}
+for (var i = 0; i < topics.length; i++) {
+	var textcell = topics[i].getElementsByTagName('td')[cellidx];
+	if (!textcell) continue;
+	var lnks = textcell.getElementsByTagName('a');
+	var lnk = lnks[0];
+	if (cellidx != 2)
+		for (var n = 0; n < lnks.length; n++)
+			if (lnks[n].className == 'torTopic bold tt-text') lnk = lnks[n];
+	if (cellidx == 2)
+		for (var n = 0; n < lnks.length; n++)
+			if (lnks[n].className == 'topictitle') lnk = lnks[n];
+	if (!lnk) continue;
+	if (String(lnk).indexOf('viewtopic.php') < 0) continue;
+	textcell.setAttribute('lnk', lnk);
+	textcell.setAttribute('ttl', strip_tags(lnk.innerHTML));
+	document.title = '[...' + (topicsprocessed + 1) + '/' + topics.length + '] ' + lnk;
+	textcell.scrollIntoView();
+	var amsg = null;
+	for (var n = 0; n < 5; n++) {
+		amsg = GetFirstPost(lnk);
+		if (-1 === amsg) break;
+		if (null != amsg) {
+			msgs.push(textcell);
+			textcell.innerHTML = amsg.innerHTML;
+			break;
+		}
+		// alert(lnk +' : no page');
+		document.title = '[$..' + (n + 1) + '] ' + lnk;
+	}
+	// if (-1 === amsg) alert(lnk +' : no first post content');
+	topicsprocessed++;
+	document.title = '[' + topicsprocessed + '/' + topics.length + '] ' + origtitle;
+}
+if (msgs.length > 0) {
+	var atbl = findtable(msgs[0]);
+	atbl.innerHTML = '';
+	for (var i = 0; i < msgs.length; i++) {
+		var tr = document.createElement('tr');
+		tr.appendChild(msgs[i]);
+		atbl.appendChild(tr);
+	}
+	msgs[0].scrollIntoView();
+}
+
+function setDocTitle(idx) {
+	document.title = '[>' + (1 + idx) + '/' + msgs.length + '] ' + msgs[idx].getAttribute('ttl');
+}
+
+function keypresshandler(e) {
+	if (((e.charCode == 106) && (msgidx != -1)) || (e.keyCode == 37)) {
+		msgidx++;
+		if (msgidx >= msgs.length) msgidx = 0;
+		msgs[msgidx].scrollIntoView();
+		return false;
+	}
+	if (((e.charCode == 107) && (msgidx != -1)) || (e.keyCode == 39)) {
+		msgidx--;
+		if (msgidx < 0) msgidx = msgs.length - 1;
+		msgs[msgidx].scrollIntoView();
+		return false;
+	}
+	if ((e.charCode == 32) && (msgidx != -1)) {
+		window.open(msgs[msgidx].getAttribute('lnk'), '_blank');
+		return false;
+	}
+	if (((e.charCode == 108) && (msgidx != -1)) || (e.keyCode == 45)) {
+		window.sidebar.addPanel(msgs[msgidx].getAttribute('ttl'), msgs[msgidx].getAttribute('lnk'), '');
+		return false;
+	}
+	// alert(e.charCode +' '+e.keyCode);
+}
+
+function scrollhandler(e) {
+	for (var i = 0; i < msgs.length; i++)
+		if ((msgs[i].getBoundingClientRect().top < 1) && (msgs[i].getBoundingClientRect().bottom >= 1)) {
+			setDocTitle(i);
+			msgidx = i;
+			return false;
+		}
+	msgidx = -1;
+	document.title = origtitle;
+}
+document.title = origtitle;
+window.onkeypress = keypresshandler;
+window.onscroll = scrollhandler;
+window.onmousedown = keypresshandler;
