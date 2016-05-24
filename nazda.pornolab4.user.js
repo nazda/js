@@ -7,8 +7,7 @@
 // @updateURL      https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab4.user.js
 // @downloadURL    https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab4.user.js
 // @homepage       https://github.com/nazda/js
-// @include     http://pornolab.net/forum/tracker.php*
-// @include     http://pornolab.net/forum/viewforum.php*
+// @include     http://pornolab.net/*
 // @icon           http://i.imgur.com/vCfrH6c.png
 // ==/UserScript==
 (function() {
