@@ -1,13 +1,14 @@
 // ==UserScript==
-// @name         nazda pornolab sort
-// @namespace    https://github.com/nazda/js/blob/master/nazda.pornolab.user.js
-// @description  Sort
+// @name         Plab
+// @namespace    https://github.com/nazda/js/raw/master/plab/plab.user.js
+// @description  Plab core
 // @author       nazda
-// @version        2017.03.20 4
-// @updateURL      https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab_sort.user.js
-// @downloadURL    https://raw.githubusercontent.com/nazda/js/master/nazda.pornolab_sort.user.js
-// @homepage       https://github.com/nazda/js
+// @version        2017.03.20 5
+// @updateURL      https://github.com/nazda/js/raw/master/plab/plab.user.js
+// @downloadURL    https://github.com/nazda/js/raw/master/plab/plab.user.js
+// @homepage       https://github.com/nazda/js/plab
 // @match          http://pornolab.net/*
+// @require https://github.com/nazda/js/raw/master/plab/Super_GM_setValue_and_GM_getValue.js
 // @grant        GM_log
 // @grant        GM_xmlhttpRequest
 // @grant       GM_registerMenuCommand
@@ -19,6 +20,10 @@
 // ==/UserScript==
 
 var Store = {};
+
+var ignore_threads_from = GM_SuperValue.get ("IgnoredUsers", []);
+
+
 
 Store.setItem = function (k, v) {
     v = String(v);
@@ -118,6 +123,7 @@ Store.setItem("tr-form" + i, search.options[i].value);
 				 }
         arr[arr.length] = vals[i] + "=" + p; 
 	}
+		GM_SuperValue.set ("cfg", arr);
 		alert(arr);
 }
 
