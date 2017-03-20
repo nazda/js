@@ -3,7 +3,7 @@
 // @namespace    https://github.com/nazda/js/raw/master/plab/plab.user.js
 // @description  Plab core
 // @author       nazda
-// @version        2017.03.20 5
+// @version        2017.03.20 6
 // @updateURL      https://github.com/nazda/js/raw/master/plab/plab.user.js
 // @downloadURL    https://github.com/nazda/js/raw/master/plab/plab.user.js
 // @homepage       https://github.com/nazda/js/plab
