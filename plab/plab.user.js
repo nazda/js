@@ -8,37 +8,34 @@
 // @downloadURL    https://github.com/nazda/js/raw/master/plab/plab.user.js
 // @homepage       https://github.com/nazda/js/plab
 // @match          http://pornolab.net/*
-// @require https://github.com/nazda/js/raw/master/plab/Super_GM_setValue_and_GM_getValue.js
 // @grant        GM_log
 // @grant        GM_xmlhttpRequest
 // @grant       GM_registerMenuCommand
-// @grant        GM_setValue
-// @grant        GM_getValue
-// @grant        GM_listValues
-// @grant        GM_deleteValue
 // @icon           http://i.imgur.com/vCfrH6c.png
 // ==/UserScript==
 
 var Store = {};
 
-var ignore_threads_from = GM_SuperValue.get ("IgnoredUsers", []);
+
 
 
 
 Store.setItem = function (k, v) {
-    v = String(v);
-    GM_setValue(window.location.hostname + "." + k, v);
+	  v = String(v);
+window.localStorage.setItem(k, v);
 }
 Store.getItem = function (k) {
-	var i = GM_getValue('k', 0);
-	dump('GM_setValue Test has run ' + i + ' times.\n');
-    return GM_getValue(window.location.hostname + "." + k);
+return window.localStorage.getItem(k);
 }
 Store.listItems = function () {
-    return GM_listValues();
+       var l = [];
+    for(var n in window.localStorage) {
+        l[l.length] = n;
+    }
+return l;
 }
 Store.deleteItem = function (k) {
-    GM_deleteValue(window.location.hostname + "." + k);
+    window.localStorage.removeItem(k);
 }
 
 
@@ -117,13 +114,10 @@ Store.setItem("tr-form" + i, search.options[i].value);
 	var arr = [];
 	var p;
      for (var i = 0; i < vals.length; i++) {
-			 p = GM_getValue(vals[i]);
-			 if (!p) {
-				 p = "";
-				 }
+			 p = Store.getItem(vals[i]);
+	
         arr[arr.length] = vals[i] + "=" + p; 
 	}
-		GM_SuperValue.set ("cfg", arr);
 		alert(arr);
 }
 
@@ -136,7 +130,7 @@ GM_registerMenuCommand("list Items", printItems);
 GM_registerMenuCommand("listCookies", listCookies);
 GM_registerMenuCommand("TRFormCheck", TRFormCheck);
 
-va
+
 //TRFormCheck();
 
 	
